@@ -5,20 +5,22 @@
  * @format
  */
 
-import React from 'react';
 import type {PropsWithChildren} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
   StatusBar,
+  StyleProp,
   StyleSheet,
   Text,
+  TextStyle,
   useColorScheme,
   View,
+  ViewStyle,
 } from 'react-native';
 
 import {
-  Colors,
   DebugInstructions,
   Header,
   LearnMoreLinks,
@@ -31,26 +33,15 @@ type SectionProps = PropsWithChildren<{
 
 function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
+
+  const colorStyle: StyleProp<TextStyle> = {
+    color: isDarkMode ? 'black' : 'white',
+  };
+
   return (
     <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+      <Text style={[styles.sectionTitle, colorStyle]}>{title}</Text>
+      <Text style={[styles.sectionDescription, colorStyle]}>{children}</Text>
     </View>
   );
 }
@@ -58,8 +49,8 @@ function Section({children, title}: SectionProps): JSX.Element {
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+  const backgroundStyle: StyleProp<ViewStyle> = {
+    backgroundColor: isDarkMode ? 'black' : 'white',
   };
 
   return (
@@ -72,10 +63,7 @@ function App(): JSX.Element {
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
         <Header />
-        <View
-          style={{
-            backgroundColor: isDarkMode ? Colors.black : Colors.white,
-          }}>
+        <View style={backgroundStyle}>
           <Section title="Step One">
             Edit <Text style={styles.highlight}>App.tsx</Text> to change this
             screen and then come back to see your edits.
