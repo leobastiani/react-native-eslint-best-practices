@@ -5,7 +5,6 @@
  * @format
  */
 
-import type {PropsWithChildren} from 'react';
 import React from 'react';
 import {
   SafeAreaView,
@@ -14,12 +13,10 @@ import {
   StyleProp,
   StyleSheet,
   Text,
-  TextStyle,
   useColorScheme,
   View,
   ViewStyle,
 } from 'react-native';
-
 import {
   DebugInstructions,
   Header,
@@ -27,24 +24,7 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const colorStyle: StyleProp<TextStyle> = {
-    color: isDarkMode ? 'black' : 'white',
-  };
-
-  return (
-    <View style={styles.sectionContainer}>
-      <Text style={[styles.sectionTitle, colorStyle]}>{title}</Text>
-      <Text style={[styles.sectionDescription, colorStyle]}>{children}</Text>
-    </View>
-  );
-}
+import {Section} from '@/components/Section';
 
 function App(): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -84,7 +64,7 @@ function App(): JSX.Element {
   );
 }
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   sectionContainer: {
     marginTop: 32,
     paddingHorizontal: 24,
